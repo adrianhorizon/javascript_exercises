@@ -14,8 +14,6 @@ function suma(...sumandos) {
     return acum
 }
 
-const suma = (...sumandos) => sumandos.reduce((acum, numero) => acum += numero) 
-/*
 function dobles(...numeros) {
     const resultado = []
     for(let i = 0; i < numeros.length; i++) {
@@ -23,16 +21,13 @@ function dobles(...numeros) {
     }
     return resultado 
 
-     recibe cada uno de los elementos .map crea un nuevo array
+    // recibe cada uno de los elementos .map crea un nuevo array
     return numeros.map(function(numero) {
         return numero * 2
     }) 
-} */
-// la vamos hacer como arrow function .map recibe y crea un nuevo array lo que hacemos
-// es retornar los numeros multiplicados por 2 y ...numeros es para decir que es un for
-const dobles = (...numeros) => numeros.map( numero => numero * 2 )
+} 
 
-/* con filter es para encontrar  esa funcion con los numeros pares
+//con filter es para encontrar  esa funcion con los numeros pares
 function pares(...numeros) {
     const resultado = []
     const length = numeros.length
@@ -43,7 +38,11 @@ function pares(...numeros) {
         }
     }
     return resultado
-} */
+} 
+const suma = (...sumandos) => sumandos.reduce((acum, numero) => acum += numero) 
+// la vamos hacer como arrow function .map recibe y crea un nuevo array lo que hacemos
+// es retornar los numeros multiplicados por 2 y ...numeros es para decir que es un for
+const dobles = (...numeros) => numeros.map( numero => numero * 2 )
 // creamos un arrow function para fultrar los numeros pares con .filter
 const pares = (...numeros) => numeros.filter( numero => numero % 2 == 0 )
 
