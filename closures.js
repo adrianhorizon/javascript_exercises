@@ -17,6 +17,11 @@ saludarPerez("as")
 saludarPerez("asda")
 
 // funcion que permita prefijos para las palabras
+function makePreFixer(prefijo) {
+    return function imprimirPrefijo(prefixer) {
+        console.log(`${prefijo} ${prefixer}`)
+    }
+}
 const makePreFixer = (prefijo) => imprimirPrefijo = (prefixer) => console.log(`${prefijo} ${prefixer}`)
 const PrefijoRe = makePreFixer("re")
 const prefijoIn = makePreFixer("in")
