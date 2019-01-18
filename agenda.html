@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Callbacks</title>
+</head>
+<body>
+  <h1 id="agenda">Estoy despertando</h1>
+  <button id="si">Si</button>
+  <button id="no">No</button>
+  <script>
+    const DESPERTAR = 3000;
+    const DUCHA = 2000;
+    const VESTIRSE = 2000;
+    const DESAYUNAR = 3000;
+    const PLATZI = 5000;
+    const $agenda = document.getElementById('agenda');
+    const $si = document.getElementById('si');
+    const $no = document.getElementById('no');
+    
+    function despertar(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                hideButton();
+                resolve('Ahora me estoy duchando...')
+            }, DESPERTAR)
+        })
+    }
+
+    function ducha(message){
+        $agenda.textContent = message;
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                hideButton();
+                resolve('me estoy vistiendo')
+            }, DUCHA)
+        });
+    }
+
+    function vestirme(message){
+        $agenda.textContent = message;
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                resolve('Ahora estoy desayunando')
+            }, VESTIRSE)
+        });
+    }
+
+    function desayunar(message){
+        $agenda.textContent = message;
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                showButton();
+
+                $si.addEventListener('click',() => {
+                    hideButton();
+                    resolve('Ahora estoy estudiando')
+                });
+
+                $no.addEventListener('click', () => {
+                    hideButton();
+                    reject('no hay comida')
+                });
+            }, DESAYUNAR)
+        });
+    }
+
+    function showButton() {
+        $si.setAttribute("style","visibility:visible");
+        $no.setAttribute("style","visibility:visible");
+    }
+
+    function hideButton(){
+        $si.setAttribute("style","visibility:hidden");
+        $no.setAttribute("style","visibility:hidden");
+    }
+
+    function error(message) {
+        $agenda.style.color = 'red'
+        $agenda.textContent = message;
+    }
+
+    function messages(message) {
+        $agenda.textContent = message
+    }
+
+    despertar()
+    .then(ducha)
+    .then(vestirme)
+    .then(desayunar)
+    .then(messages)
+    .catch(error)
+  </script>
+</body>
+</html>
